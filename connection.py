@@ -1,10 +1,13 @@
 # pip install python-connector-mysql
 import mysql.connector
 
-db = mysql.connector.connect(
-  host="127.0.0.1",
-  user="root",
-  password=""
-)
+class DbManager:
+    def __init__(self, host="127.0.0.1", user="root", pwd="", db="inmomapbdd"):
+        self.connection = mysql.connector.connect(
+            host=host,
+            user=user,
+            password=pwd,
+            database=db,
+        )
 
-print(db)
+        self.cursor = self.connection.cursor()
