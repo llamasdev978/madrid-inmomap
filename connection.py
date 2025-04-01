@@ -19,7 +19,7 @@ class DbManager:
 
     
     def get_usuarios(self):
-        self.cursor.execute("SELECT * FROM usuarios")
+        self.cursor.execute("SELECT * FROM usuario")
         return self.cursor.fetchall()
     
     def get_roles(self):
@@ -29,6 +29,11 @@ class DbManager:
     def get_zonas(self):
         self.cursor.execute("SELECT * FROM zonas")
         return self.cursor.fetchall()
+    
+    def get_usuarios_dict(self):
+        self.cursor.execute("SELECT nombre, password FROM usuario")
+        usuarios = self.cursor.fetchall()
+        return {usuario[0]: usuario[1] for usuario in usuarios}
 
     # Funcion para desconectarse de la base de datos
     def desconectar(self):
