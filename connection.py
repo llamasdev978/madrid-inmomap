@@ -34,6 +34,20 @@ class DbManager:
         self.cursor.execute("SELECT nombre, password FROM usuario")
         usuarios = self.cursor.fetchall()
         return {usuario[0]: usuario[1] for usuario in usuarios}
+    
+    def crear_usuario(self,nombre,correo,pwd,fnacimiento,rolid):
+        rol = ''
+        match rolid:
+            case '1':
+                rol = 'admin'
+            case '2':
+                rol = 'manager'
+            case '3':
+                rol = 'usuario'
+            case _:
+                rol = 'NULL'
+
+        self.cursor.execute(f"INSERT INTO `usuario` (`id_user`, `nombre`, `correo`, `password`, `fecha_nacimiento`, `rol_id`) VALUES (NULL, '{nombre}', '{correo}', '{pwd}', '{fnacimiento}', '{rol}')")
 
     # Funcion para desconectarse de la base de datos
     def desconectar(self):
