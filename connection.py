@@ -35,15 +35,18 @@ class DbManager:
         usuarios = self.cursor.fetchall()
         return {usuario[0]: usuario[1] for usuario in usuarios}
     
-    def crear_usuario(self,nombre,correo,pwd,fnacimiento,rolid):
+    def registro_usuario(self,nombre,correo,pwd,fnacimiento):
+        self.cursor.execute(f"INSERT INTO `usuario` (`id_user`, `nombre`, `correo`, `password`, `fecha_nacimiento`, `rol_id`) VALUES (NULL, '{nombre}', '{correo}', '{pwd}', '{fnacimiento}', '3')")
+
+    def crear_usuario_admin(self,nombre,correo,pwd,fnacimiento,rolid):
         rol = ''
         match rolid:
-            case '1':
-                rol = 'admin'
-            case '2':
-                rol = 'manager'
-            case '3':
-                rol = 'usuario'
+            case 'admin':
+                rol = '1'
+            case 'manager':
+                rol = '2'
+            case 'usuario':
+                rol = '3'
             case _:
                 rol = 'NULL'
 
