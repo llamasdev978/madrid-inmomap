@@ -56,3 +56,5 @@ class DbManager:
     def desconectar(self):
         self.connection.disconnect()
         print("Fin de la conexion con la base de datos")
+
+# comentario de prueba
