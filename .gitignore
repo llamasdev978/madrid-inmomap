@@ -1,2 +1,2 @@
 # Ignorar el archivo connection.py
-/main/connection.py
+main/connection.py
